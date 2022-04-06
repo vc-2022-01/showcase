@@ -1,17 +1,13 @@
-p5 `div` [shortcodes](https://gohugo.io/content-management/shortcodes/) embed [p5.js](https://p5js.org/) code within a [div element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div). There are two p5 `div` shortcodes: [p5-div](#p5-div) and [p5-instance-div](#p5-instance-div).
-
-# Terreno procedural
-
-```html
-{{</* let terrain = [];
+//codigo tomado de coding train (generador de terreno)
+let terrain = [];
 function setup() {
-  createCanvas(500, 500, WEBGL);
+  createCanvas(400, 400, WEBGL);
   cols = 0;rows = 0;
-  elevacion = 100;
-  scl = 25;
+  elevacion = 120;
+  scl = 15;
   vel = 0.05;
   cambio = scl;
-  crecimiento = 0.07;
+  crecimiento = 0.09;
   w = 800;
   h = 800;
   cols = w/scl;
@@ -49,24 +45,10 @@ function draw() {
   for(y = 0; y < rows; y++){
       beginShape(TRIANGLE_STRIP);
       for(x = 0; x < cols;x++){
-        fill(10,200,200-terrain[x][y]*10)
+        fill(10,170,200-terrain[x][y]*10)
         vertex(x*scl,y*scl,terrain[x][y]);
-        fill(10,255,100-terrain[x][y+1]*10)
         vertex(x*scl,(y+1)*scl,terrain[x][y+1]);
       }
       endShape();
     }
-} */>}}
-```
-
-All parameters are optional but `sketch`. Default values are shown in the above snippet but for `libs*`. Up to `lib5` libs may be specified.
-
-
-
-
-
-
-
-{{< p5-iframe sketch="/showcase/sketches/terreno.js" width="425" height="425" >}}
-
-
+}

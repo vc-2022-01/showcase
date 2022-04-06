@@ -2,173 +2,27 @@ p5 `iframe` [shortcodes](https://gohugo.io/content-management/shortcodes/) embed
 
 # p5-iframe
 
-```html
-{{</* p5-iframe ver="1.4.1" sketch="/path/to/sketch.js" lib1="https://cdntolib1/lib1.js" width="800" height="600" */>}}
-```
+## Movimiento de partículas a través de un campo de perlin noise
 
-All parameters are optional but `sketch`. Default values are shown in the above snippet but for `libs*`. Up to `lib5` libs may be specified.
+En el siguiente frame se puede ver el movimiento con rastro de partículas a través de un campo de perlin noise
 
-## Color relativity
+{{< p5-iframe  sketch="/showcase/sketches/camposCP3.js" width="425" height="425" >}}
+{{< p5-iframe  sketch="/showcase/sketches/camposCP.js" width="425" height="425" >}}
+{{< p5-iframe  sketch="/showcase/sketches/camposCP2.js" width="425" height="425" >}}
 
-Look at this [brief explanation](https://p5js.org/examples/color-relativity.html) about what color relativity is.
+si jugamos con la rejilla y la dirección de los vectores, se pueden generar texturas o efectos visuales más complejos
 
-{{< details title="p5-iframe markdown" open=false >}}
-```html
-{{</* p5-iframe sketch="/showcase/sketches/colors.js" width="725" height="425 */>}}
-```
-{{< /details >}}
+### Snow
 
-{{< p5-iframe sketch="/showcase/sketches/colors.js" width="725" height="425" >}}
+{{< p5-iframe  sketch="/showcase/sketches/snow.js" width="425" height="425" >}}
 
-## Third party libraries
+### Grass
 
-Example adapted from [p5.EasyCam](https://github.com/freshfork/p5.EasyCam/blob/master/examples/QuickStart/QuickStart.js).
+{{< p5-iframe  sketch="/showcase/sketches/grass.js" width="425" height="425" >}}
 
-{{< details title="p5-iframe markdown" open=false >}}
-```html
-{{</* p5-iframe sketch="/showcase/sketches/quick_easycam.js" lib1="https://cdn.jsdelivr.net/gh/freshfork/p5.EasyCam@1.2.1/p5.easycam.min.js" width="525" height="525" */>}}
-```
-{{< /details >}}
+Según lo explica **Andre Tatarinov** en su paper titulado __Perlin noise in Real-time Computer Graphics__, esto también se puede usar para generar efectos dinámicos volumétricos como fuego, una explosión o humo, esto solo cambiando la dirección y el comportamiento de los vectores asociados a la rejilla.
 
-{{< p5-iframe sketch="/showcase/sketches/quick_easycam.js" lib1="https://cdn.jsdelivr.net/gh/freshfork/p5.EasyCam@1.2.1/p5.easycam.min.js" width="525" height="525" >}}
 
-## Sound
+### Fire
 
-Example took from the [p5 examples](https://p5js.org/examples/sound-sound-effect.html).
-
-{{< details title="p5-iframe markdown" open=false >}}
-```html
-{{</* p5-iframe sketch="/showcase/sketches/sound.js" width="225" height="225" */>}}
-```
-{{< /details >}}
-
-{{< p5-iframe sketch="/showcase/sketches/sound.js" width="225" height="225" >}}
-
-# p5-global-iframe
-
-```html
-{{</* p5-global-iframe id="sketchid" ver="1.4.1" lib1="https://cdntolib1/lib1.js" width="800" height="600" >}}
-  // inline sketch code
-{{< /p5-global-iframe */>}}
-```
-
-{{< hint warning >}}
-Note that the inline `sketch` should be coded in [p5 global mode](https://github.com/processing/p5.js/wiki/Global-and-instance-mode) syntax.
-{{< /hint >}}
-
-All parameters are optional but `id`. Default values are shown in the above snippet but for `libs*`. Up to `lib5` libs may be specified.
-
-## Breathing square
-
-Look at [this reference](https://michaelbach.de/ot/mot-breathingSquare/) for an explanation and further parameterization of the illusion.
-
-{{< details title="p5-global-iframe markdown" open=false >}}
-```js
-{{</* p5-global-iframe id="breath" width="625" height="625" >}}
-  // Coded as `global mode` of [this](https://github.com/VisualComputing/Cognitive/blob/gh-pages/sketches/rotateSquare.js)
-  let angle = 0;
-  let speed = 0.06;
-
-  function setup() {
-    createCanvas(600, 600);
-  }
-
-  function draw() {
-    background(255, 255, 255);
-    rotateSquare();
-    if (!mouseIsPressed) {
-      strokeWeight(0);
-      stroke(0);
-      fill(255, 140, 0);
-      rect(0, 0, 281, 281);
-      rect(318, 0, 281, 281);
-      rect(0, 318, 281, 281);
-      rect(318, 318, 281, 281);
-    }
-  }
-
-  function rotateSquare() {
-    push();
-    angle += speed;
-    strokeWeight(0);
-    stroke(0);
-    fill(0, 0, 255);
-    translate(width / 2, height / 2);
-    rotate(angle);
-    rect(-187.5, -187.5, 375, 375);
-    pop();
-  }
-{{< /p5-global-iframe */>}}
-```
-{{< /details >}}
-
-{{< p5-global-iframe id="breath" width="625" height="625" >}}
-  let angle = 0;
-  let speed = 0.06;
-
-  function setup() {
-    createCanvas(600, 600);
-  }
-
-  function draw() {
-    background(255, 255, 255);
-    rotateSquare();
-    if (!mouseIsPressed) {
-      strokeWeight(0);
-      stroke(0);
-      fill(255, 140, 0);
-      rect(0, 0, 281, 281);
-      rect(318, 0, 281, 281);
-      rect(0, 318, 281, 281);
-      rect(318, 318, 281, 281);
-    }
-  }
-
-  function rotateSquare() {
-    push();
-    angle += speed;
-    strokeWeight(0);
-    stroke(0);
-    fill(0, 0, 255);
-    translate(width / 2, height / 2);
-    rotate(angle);
-    rect(-187.5, -187.5, 375, 375);
-    pop();
-  }
-{{< /p5-global-iframe >}}
-
-# p5-widget
-
-The `p5-widget` [shortcode](https://gohugo.io/content-management/shortcodes/) embed [p5.js](https://p5js.org/) code within an [p5-widget](https://toolness.github.io/p5.js-widget/).
-
-```html
-{{</* p5-widget autoplay=true height="400" width="400" ver="1.4.1" >}}
-  // inline sketch code
-{{< /p5-widget */>}}
-```
-
-All parameters are optional. Default `ver` is `1.4.1`. For example:
-
-## Widget example
-
-```js
-{{</* p5-widget autoplay=true height="400" width="400" ver="1.4.1" >}}
-function setup() {
-  createCanvas(300, 300);
-}
-
-function draw() {
-  background(255, 0, 255);
-}
-{{< /p5-widget */>}}
-```
-
-{{< p5-widget autoplay=true height="400" width="400" ver="1.4.1" >}}
-function setup() {
-  createCanvas(300, 300);
-}
-
-function draw() {
-  background(255, 0, 255);
-}
-{{< /p5-widget >}}
+{{< p5-iframe  sketch="/showcase/sketches/Fire.js" width="425" height="425" >}}

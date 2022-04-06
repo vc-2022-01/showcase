@@ -12,7 +12,13 @@ El ruido es una función pseudo-aleatoria a partir de la cual se pueden generar 
 
 ![1](https://upload.wikimedia.org/wikipedia/commons/0/09/PerlinNoiseGradientGrid.png)
 
-En donde cada vértice tiene asociado un vector gradiente pseudo aleatorio.
+En donde cada vertice tiene asociado un vector
+
+* un vector es un segmento de recta con magnitud y dirección
+
+{{< p5-iframe  sketch="/showcase/sketches/vector.js" width="425" height="425" >}}
+
+Este es un vector gradiente pseudo aleatorio.
 
 ![2](https://upload.wikimedia.org/wikipedia/commons/2/24/PerlinNoiseDotProducts.png)
 
