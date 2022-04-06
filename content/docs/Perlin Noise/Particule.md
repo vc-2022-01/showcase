@@ -19,6 +19,3 @@ si jugamos con la rejilla y la dirección de los vectores, se pueden generar tex
 Según lo explica **Andre Tatarinov** en su paper titulado __Perlin noise in Real-time Computer Graphics__, esto también se puede usar para generar efectos dinámicos volumétricos como fuego, una explosión o humo, esto solo cambiando la dirección y el comportamiento de los vectores asociados a la rejilla.
 
 
-### Fire
-
-{{< p5-iframe  sketch="/showcase/sketches/Fire.js" width="425" height="425" >}}
