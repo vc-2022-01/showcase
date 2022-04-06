@@ -1,7 +1,3 @@
-p5 `iframe` [shortcodes](https://gohugo.io/content-management/shortcodes/) embed [p5.js](https://p5js.org/) code within an [iframe element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe). There are two p5 `iframe` shortcodes: [p5-iframe](#p5-iframe) and [p5-global-iframe](#p5-global-iframe).
-
-# p5-iframe
-
 ## Movimiento de partículas a través de un campo de perlin noise
 
 En el siguiente frame se puede ver el movimiento con rastro de partículas a través de un campo de perlin noise
