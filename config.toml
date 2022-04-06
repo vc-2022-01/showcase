@@ -1,6 +1,6 @@
 baseURL = "https://visualcomputing.github.io/showcase"
 languageCode = "en-us"
-title = "Visual Computing"
+title = "Computación Visual"
 theme = 'book'
 
 # Book configuration
