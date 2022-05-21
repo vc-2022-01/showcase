@@ -5,14 +5,18 @@ let slider;
 let sliderD;
 
 function setup() {
-  createCanvas(400, 400,WEBGL);
+    /*
   sliderZ = createSlider(-100,0, 0);
   sliderZ.position(10, 10);
+  sliderS = createSlider(200,600, 400,10);
+  sliderS.position(10, 40);
   sliderR = createSlider(0,1.55,0,0.05);
   sliderR.position(10, 350);
-  size = 400;
+  */
   z = 0;
+  size = 400;
   rotation = 0;
+  createCanvas(400, 400,WEBGL);
   img = loadImage('.../tierra.jpg');
 }
 
