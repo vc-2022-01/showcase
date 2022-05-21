@@ -15,9 +15,9 @@ function setup() {
   */
   z = 0;
   size = 400;
-
+  rotation = 0;
   createCanvas(400, 400,WEBGL);
-  img = loadImage("tierra.jpg");
+  img = loadImage("content/sketches/tierra.jpg");
 }
 
 function draw() {
