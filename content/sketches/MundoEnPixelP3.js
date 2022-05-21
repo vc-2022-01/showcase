@@ -8,7 +8,7 @@ function setup() {
 
   sliderZ = createSlider(-100,0, 0);
   sliderZ.position(10, 10);
-  sliderS = createSlider(200,600, 400,10);
+  sliderS = createSlider(200,600, 100,10);
   sliderS.position(10, 40);
   sliderR = createSlider(0,1.55,0.8,0.05);
   sliderR.position(10, 350);
