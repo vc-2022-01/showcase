@@ -19,7 +19,7 @@ function setup() {
   size = 400;
 
   createCanvas(400, 400,WEBGL);
-  img = loadImage(".../tierra.jpg");
+  img = loadImage("/showcase/sketches/tierra.jpg");
 }
 
 function draw() {
