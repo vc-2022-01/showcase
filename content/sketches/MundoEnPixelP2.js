@@ -6,7 +6,7 @@ let sliderD;
 
 function setup() {
 
-  sliderZ = createSlider(-100,0, 0);
+  sliderZ = createSlider(-100,0, -50);
   sliderZ.position(10, 10);
   /*
   sliderS = createSlider(200,600, 400,10);
