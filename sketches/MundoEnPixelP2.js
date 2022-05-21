@@ -14,10 +14,8 @@ function setup() {
   */
   sliderR = createSlider(0,1.55,0,0.05);
   sliderR.position(10, 350);
-
   z = 0;
   size = 400;
-
   createCanvas(400, 400,WEBGL);
   img = loadImage('.../tierra.jpg');
 }
@@ -25,8 +23,8 @@ function setup() {
 function draw() {
   
   background(220);
-  z = sliderZ.value();
-  rotation = sliderR.value();
+  z = 0;
+  rotation = 0;
   rotateY(rotation)
   push();
   noStroke();
