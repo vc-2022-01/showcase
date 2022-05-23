@@ -3,7 +3,6 @@ let size;
 let rotation;
 let slider;
 let sliderD;
-
 function setup() {
     /*
   sliderZ = createSlider(-100,0, 0);
@@ -17,7 +16,7 @@ function setup() {
   size = 400;
   rotation = 0;
   createCanvas(400, 400,WEBGL);
-  img = loadImage('/showcase/sketches/tierra.jpg');
+  img = loadImage('../../tierra.jpg');
 }
 
 function draw() {
