@@ -1018,36 +1018,7 @@ class EasyCam {
    * </pre>
    * 
    */
-  beginHUD(renderer, w, h) {
-    var cam = this.cam;
-    renderer = renderer || cam.renderer;
-    
-    if(!renderer) return;
-    this.pushed_rendererState = renderer.push();
-    
-    var gl = renderer.drawingContext;
-    var w = (w !== undefined) ? w : renderer.width;
-    var h = (h !== undefined) ? h : renderer.height;
-    var d = Number.MAX_VALUE;
-    
-    gl.flush();
-    // gl.finish();
-    
-    // 1) disable DEPTH_TEST
-    gl.disable(gl.DEPTH_TEST);
-    // 2) push modelview/projection
-    //    p5 is not creating a push/pop stack
-    this.pushed_uMVMatrix = renderer.uMVMatrix.copy();
-    this.pushed_uPMatrix  = renderer.uPMatrix .copy();
-    
-    // 3) set new modelview (identity)
-    renderer.resetMatrix();
-    // 4) set new projection (ortho)
-    renderer._curCamera.ortho(0, w, -h, 0, -d, +d);
-    // renderer.ortho();
-    // renderer.translate(-w/2, -h/2);
 
-  }
   
   
 
@@ -1056,24 +1027,6 @@ class EasyCam {
    * end screen-aligned 2D-drawing.
    * 
    */
-  endHUD(renderer) {
-    var cam = this.cam;
-    renderer = renderer || cam.renderer;
-    
-    if(!renderer) return;
-    
-    var gl = renderer.drawingContext;
-    
-    gl.flush();
-    // gl.finish();
-      
-    // 2) restore modelview/projection
-    renderer.uMVMatrix.set(this.pushed_uMVMatrix);
-    renderer.uPMatrix .set(this.pushed_uPMatrix );
-    // 1) enable DEPTH_TEST
-    gl.enable(gl.DEPTH_TEST);
-    renderer.pop(this.pushed_rendererState);
-  }
 
   
   
