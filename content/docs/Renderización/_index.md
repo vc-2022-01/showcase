@@ -27,7 +27,7 @@ El mundo es el espacio bajo el cual toda la escena está definida, este tiene su
 
 ## Cámara u ojo
 
-Es el espacio coordinado con origen en el centro de la proyección. La cámara es el punto de vista desde el cual se ve el mundo, este forma un campo de visión formado a partir de cuatro rayos. 
+Es el espacio coordinado con origen en el centro de la proyección. La cámara es el punto de vista desde el cual se ve el mundo, este forma un *campo de visión* formado a partir de cuatro rayos. Cada objeto quede dentro del espectro de los cuatro rayos será percibido por la cámara, esto lo hace dado que los puntos en el mundo se reflejan como rayos hacia la cámara.
 
 ![4](https://github.com/ggarciarom/NewProyect/blob/master/camera.png?raw=true)
 
