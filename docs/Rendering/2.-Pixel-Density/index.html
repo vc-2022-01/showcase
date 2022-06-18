@@ -1,0 +1,61 @@
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="The world and the pixel # Each pixel on the screen represents a quantity of space in the space of the world. The illusion of forced perspective allows to keep the relation that exists between the world and the pixel, that is to say, the amount of world that can be represented in the pixel in the space of the screen, this relation is going to be called density and is used by the function pixelRatio in the code previously seen."><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content><meta property="og:description" content="The world and the pixel # Each pixel on the screen represents a quantity of space in the space of the world. The illusion of forced perspective allows to keep the relation that exists between the world and the pixel, that is to say, the amount of world that can be represented in the pixel in the space of the screen, this relation is going to be called density and is used by the function pixelRatio in the code previously seen."><meta property="og:type" content="article"><meta property="og:url" content="https://visualcomputing.github.io/showcase/docs/Rendering/2.-Pixel-Density/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2022-06-18T13:06:20-05:00"><title>2. Pixel Density | Computación Visual</title><link rel=manifest href=/showcase/manifest.json><link rel=icon href=/showcase/favicon.png type=image/x-icon><link rel=stylesheet href=/showcase/book.min.ab46de3e725a6415339a37bba23a0067534a37289b063c9f8d011515a63097a8.css integrity="sha256-q0bePnJaZBUzmje7ojoAZ1NKNyibBjyfjQEVFaYwl6g=" crossorigin=anonymous><script defer src=/showcase/flexsearch.min.js></script>
+<script defer src=/showcase/en.search.min.a6302dc92627cb7632edc28c53fa23ecbcd35b14c429949855c0b714b3c24379.js integrity="sha256-pjAtySYny3Yy7cKMU/oj7LzTWxTEKZSYVcC3FLPCQ3k=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/showcase/><span>Computación Visual</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li><input type=checkbox id=section-f16bacd6ba641988bf9f5904b3e35c52 class=toggle>
+<label for=section-f16bacd6ba641988bf9f5904b3e35c52 class="flex justify-between"><a href=/showcase/docs/Members/>Members</a></label><ul><li><a href=/showcase/docs/Members/Andr%C3%A9s-Felipe-Betancurth-Becerra/>Andrés Felipe Betancurth Becerra</a></li><li><a href=/showcase/docs/Members/Gabriela-Mar%C3%ADa-Garc%C3%ADa-Romero/>Gabriela María García Romero</a></li><li><a href=/showcase/docs/Members/Juan-Manuel-Correa-Lombana/>Juan Manuel Correa Lombana</a></li></ul></li><li><input type=checkbox id=section-3e112ead3fbe9fbd824a55c99407a06b class=toggle>
+<label for=section-3e112ead3fbe9fbd824a55c99407a06b class="flex justify-between"><a href=/showcase/docs/Perlin-Noise/>Perlin Noise</a></label><ul><li><a href=/showcase/docs/Perlin-Noise/Particule/>Particule</a></li><li><a href=/showcase/docs/Perlin-Noise/Terrain/>Terrain</a></li></ul></li><li><a href=/showcase/docs/Rendering/>Rendering</a><ul><li><a href=/showcase/docs/Rendering/1.-Baseline/>1. Baseline</a></li><li><a href=/showcase/docs/Rendering/2.-Pixel-Density/ class=active>2. Pixel Density</a></li><li><a href=/showcase/docs/Rendering/3.-Aplications/>3. Aplications</a></li><li><a href=/showcase/docs/Rendering/4.-Conslusions/>4. Conslusions</a></li></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/showcase/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>2. Pixel Density</strong>
+<label for=toc-control><img src=/showcase/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><ul><li><a href=#the-world-and-the-pixel>The world and the pixel</a><ul><li><a href=#move-objects-away>Move objects away</a></li><li><a href=#change-objects-size>Change Object&rsquo;s Size</a></li></ul></li></ul></li></ul></nav></aside></header><article class=markdown><h2 id=the-world-and-the-pixel>The world and the pixel
+<a class=anchor href=#the-world-and-the-pixel>#</a></h2><p>Each pixel on the screen represents a quantity of space in the space of the world. The illusion of forced perspective allows to keep the relation that exists between the world and the pixel, that is to say, the amount of world that can be represented in the pixel in the space of the screen, this relation is going to be called <em>density</em> and is used by the function pixelRatio in the code previously seen.</p><iframe id=MundoEnPixelP1 style=width:425px;height:425px srcdoc="
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <script src=https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js></script>
+            <script src=https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/addons/p5.sound.min.js></script>
+            
+            
+            
+            
+            
+            <script src=/showcase/sketches/MundoEnPixelP1.js></script>
+          </head>
+          <body>
+          </body>
+        </html>
+      "></iframe><h3 id=move-objects-away>Move objects away
+<a class=anchor href=#move-objects-away>#</a></h3><p>When the object is moved away from the screen on which it is being displayed, because of the angle of the frustum, the object reduces its size on the screen, however, in the world it still retains its size. This means that each pixel will contain more information about the world, even when the object is the same.</p><blockquote class="book-hint info"><p><strong>Instructions</strong>
+The following figure shows a map being represented in a grid which represent the pixels on a screen</p><ul><li>Move the slider above to move the map further or closer to the screen</li><li>Move the slider below to rotate our perception on the world (Hint: the map and the grid will rotate as well)</li></ul></blockquote><iframe id=MundoEnPixelP2 style=width:425px;height:425px srcdoc="
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <script src=https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js></script>
+            <script src=https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/addons/p5.sound.min.js></script>
+            
+            
+            
+            
+            
+            <script src=/showcase/sketches/MundoEnPixelP2.js></script>
+          </head>
+          <body>
+          </body>
+        </html>
+      "></iframe><h3 id=change-objects-size>Change Object&rsquo;s Size
+<a class=anchor href=#change-objects-size>#</a></h3><p>What would happen now if we changed the wor object&rsquo;s size. The answer is that, in the same way that happened in when we changed the distance, the object would appear bigger or smaller on the screen.</p><blockquote class="book-hint info"><p><strong>Instructions</strong>
+The following figure shows a map being represented in a grid which represent the pixels on a screen</p><ul><li>Move the slider above to move the map further or closer to the screen</li><li>Move the slider in the middle to change the map&rsquo;s size</li><li>Move the slider below to rotate our perception on the world (Hint: the map and the grid will rotate as well)</li></ul></blockquote><iframe id=MundoEnPixelP3 style=width:425px;height:425px srcdoc="
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <script src=https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js></script>
+            <script src=https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/addons/p5.sound.min.js></script>
+            
+            
+            
+            
+            
+            <script src=/showcase/sketches/MundoEnPixelP3.js></script>
+          </head>
+          <body>
+          </body>
+        </html>
+      "></iframe><p>What would happen then if we increase the size while the scene is zoomed out? If we increase the size of the object at the same rate at which the field of view angle increases, what would happen is that the scene generated on the screen would not change, even though the size of the object does change.</p><p>What does change is the pixel density, because even though the object is larger in the world, it is the same size on the screen, i.e., in this case the amount stored in each pixel of the world increases.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/visualcomputing/showcase/commit/5fea336d1002157fcc3aa1991b3869e90c0322ef title='Last modified by ggarciarom | June 18, 2022' target=_blank rel=noopener><img src=/showcase/svg/calendar.svg class=book-icon alt=Calendar>
+<span>June 18, 2022</span></a></div></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#the-world-and-the-pixel>The world and the pixel</a><ul><li><a href=#move-objects-away>Move objects away</a></li><li><a href=#change-objects-size>Change Object&rsquo;s Size</a></li></ul></li></ul></li></ul></nav></div></aside></main></body></html>
