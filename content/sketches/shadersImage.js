@@ -10,7 +10,9 @@ let mask;
 */
 
 function preload() {
-	maskShader = readShader("/showcase/shaders/mask.frag", { varyings: Tree.texcoords2,});
+	normalMaskShader = readShader("/showcase/shaders/normalmask.frag", { varyings: Tree.texcoords2,});
+    interestMaskShader = readShader("/showcase/shaders/interestmask.frag", { varyings: Tree.texcoords2,});
+    magnifierMaskShader = readShader("/showcase/shaders/magnifiermask.frag", { varyings: Tree.texcoords2,});
   	img = loadImage("/showcase/sketches/lenna.png");
 }
 
@@ -20,15 +22,7 @@ function setup() {
 	noStroke();
 	textureMode(NORMAL);
 
-	region = createCheckbox('Region', false);
-	region.style('color', 'white');
-	region.changed(() => {
-		if (region.checked()) {
-			maskShader.setUniform('region', true);
-		} else {
-			maskShader.setUniform('region', false);
-		}
-	});
+
 	region.position(100, 10);
 	mask = createSelect();
 	mask.option('None', 0);
@@ -44,54 +38,68 @@ function setup() {
 	mask.changed(() => {
 		switch (mask.value()) {
 			case '0':
-				maskShader.setUniform('mask', [0.0, 0.0, 0.0, 0.0, 1., 0.0, 0.0, 0.0, 0.0]); // Identity
-				maskShader.setUniform('option', 0); // Magnifier
+				normalMaskShader.setUniform('mask', [0.0, 0.0, 0.0, 0.0, 1., 0.0, 0.0, 0.0, 0.0]);
+                interestMaskShader.setUniform('mask', [0.0, 0.0, 0.0, 0.0, 1., 0.0, 0.0, 0.0, 0.0]); // Identity
 				break;
 			case '1':
-				maskShader.setUniform('mask', [0.0625, 0.125, 0.0625, 0.125, 0.25, 0.125, 0.0625, 0.125, 0.0625]); // Gaussian blur
-				maskShader.setUniform('option', 0); // Magnifier
+				normalMaskShader.setUniform('mask', [0.0625, 0.125, 0.0625, 0.125, 0.25, 0.125, 0.0625, 0.125, 0.0625]);
+                interestMaskShader.setUniform('mask', [0.0625, 0.125, 0.0625, 0.125, 0.25, 0.125, 0.0625, 0.125, 0.0625]); // Gaussian blur
 				break;
 			case '2':
-				maskShader.setUniform('mask', [0.1111, 0.1111, 0.1111, 0.1111, 0.1111, 0.1111, 0.1111, 0.1111, 0.1111]); // Box blur
-				maskShader.setUniform('option', 0); // Magnifier
+				normalMaskShader.setUniform('mask', [0.1111, 0.1111, 0.1111, 0.1111, 0.1111, 0.1111, 0.1111, 0.1111, 0.1111]);
+                interestMaskShader.setUniform('mask', [0.1111, 0.1111, 0.1111, 0.1111, 0.1111, 0.1111, 0.1111, 0.1111, 0.1111]); // Box blur
 				break;
 			case '3':
-				maskShader.setUniform('mask', [1.0, 0.0, 1.0, 0.0, -4.0, 0.0, 1.0, 0.0, 1.0]); // Laplacian 
-				maskShader.setUniform('option', 0); // Magnifier
+				normalMaskShader.setUniform('mask', [1.0, 0.0, 1.0, 0.0, -4.0, 0.0, 1.0, 0.0, 1.0]);
+                interestMaskShader.setUniform('mask', [1.0, 0.0, 1.0, 0.0, -4.0, 0.0, 1.0, 0.0, 1.0]); // Laplacian 
 				break;
 			case '4':
-				maskShader.setUniform('mask', [-1.0, -1.0, -1.0, -1.0, 8.0, -1.0, -1.0, -1.0, -1.0]); // Edge detect 
-				maskShader.setUniform('option', 0); // Magnifier
+				normalMaskShader.setUniform('mask', [-1.0, -1.0, -1.0, -1.0, 8.0, -1.0, -1.0, -1.0, -1.0]);
+                interestMaskShader.setUniform('mask', [-1.0, -1.0, -1.0, -1.0, 8.0, -1.0, -1.0, -1.0, -1.0]); // Edge detect 
 				break;
 			case '5':
-				maskShader.setUniform('mask', [-2.0, -1.0, 0.0, -1.0, 1.0, 1.0, 0.0, 1.0, 2.0]); // Emboss
-				maskShader.setUniform('option', 0); // Magnifier
+				normalMaskShader.setUniform('mask', [-2.0, -1.0, 0.0, -1.0, 1.0, 1.0, 0.0, 1.0, 2.0]);
+                interestMaskShader.setUniform('mask', [-2.0, -1.0, 0.0, -1.0, 1.0, 1.0, 0.0, 1.0, 2.0]); // Emboss
 				break;
 			case '6':
-				maskShader.setUniform('mask', [-1.0, 0.0, -1.0, 0.0, 5.0, 0.0, -1.0, 0.0, -1.0]); // Sharpen
-				maskShader.setUniform('option', 0); // Magnifier
+				normalMaskShader.setUniform('mask', [-1.0, 0.0, -1.0, 0.0, 5.0, 0.0, -1.0, 0.0, -1.0]);
+                interestMaskShader.setUniform('mask', [-1.0, 0.0, -1.0, 0.0, 5.0, 0.0, -1.0, 0.0, -1.0]); // Sharpen
 				break;
 			case '7':
-				maskShader.setUniform('mask', [1.0, 0.0, -1.0, 2.0, 0.0, -2.0, 1.0, 0.0, -1.0]); // Sobel
-				maskShader.setUniform('option', 0); // Magnifier
+				normalMaskShader.setUniform('mask', [1.0, 0.0, -1.0, 2.0, 0.0, -2.0, 1.0, 0.0, -1.0]);
+                interestMaskShader.setUniform('mask', [1.0, 0.0, -1.0, 2.0, 0.0, -2.0, 1.0, 0.0, -1.0]); // Sobel
 				break;
 			case '8':
-				maskShader.setUniform('option', 1); // Magnifier
+				normalMaskShader.setUniform('mask', [0.0, 0.0, 0.0, 0.0, 1., 0.0, 0.0, 0.0, 0.0]);
+                interestMaskShader.setUniform('mask', [0.0, 0.0, 0.0, 0.0, 1., 0.0, 0.0, 0.0, 0.0]);
 				break;
 			default:
 				console.log(mask.value());
 				break;
 		}
 	});
-	shader(maskShader);
-	maskShader.setUniform('texture', img);
-	maskShader.setUniform('mask', [0.0, 0.0, 0.0, 0.0, 1., 0.0, 0.0, 0.0, 0.0]); // Identity
-	emitTexOffset(maskShader, img, 'texOffset');
-	emitResolution(maskShader, 'u_resolution');
+    region = createCheckbox('Region', false);
+	region.style('color', 'white');
+	region.changed(() => {
+		if (region.checked()) {
+			shader(interestMaskShader);
+            interestMaskShader.setUniform('texture', img);
+            interestMaskShader.setUniform('mask', [0.0, 0.0, 0.0, 0.0, 1., 0.0, 0.0, 0.0, 0.0]);
+            emitTexOffset(interestMaskShader, img, 'texOffset');
+            emitResolution(interestMaskShader, 'u_resolution');
+		} else {
+			shader(maskShader);
+            normalMaskShader.setUniform('texture', img);
+            normalMaskShader.setUniform('mask', [0.0, 0.0, 0.0, 0.0, 1., 0.0, 0.0, 0.0, 0.0]);
+            emitTexOffset(normalMaskShader, img, 'texOffset');
+            emitResolution(normalMaskShader, 'u_resolution');
+		}
+	});
+
 }
 
 function draw() {
 	background(0);
-	emitMousePosition(maskShader, 'u_mouse');
+	emitMousePosition(interestMaskShader, 'u_mouse');
 	quad(-width / 2, -height / 2, width / 2, -height / 2, width / 2, height / 2, -width / 2, height / 2);
 }
