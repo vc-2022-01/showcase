@@ -8,16 +8,12 @@ uniform vec2 texOffset;
 uniform float mask[9];
 uniform vec2 u_mouse;
 uniform vec2 u_resolution;
-uniform int option;
-uniform bool region;
-
+uniform bool foco;
+uniform bool radian;
 // we need our interpolated tex coord
 varying vec2 texcoords2;
 
 void main() {
-
-  //0 Mask - 1 magnifier
-  if(option == 0) {
     vec2 xy = gl_FragCoord.xy - u_mouse.xy;
 
     float R = 100.;
@@ -58,21 +54,9 @@ void main() {
       convolution += rgba[i] * mask[i];
     }
 
-    if(region) {
+    if(foco) {
       gl_FragColor = r < hr ? vec4(convolution.rgb, 1.0) : texture2D(texture, texcoords2);
     } else {
       gl_FragColor = vec4(convolution.rgb, 1.0);
     }
-  } else if(option == 1) {
-    vec2 xy = gl_FragCoord.xy - u_mouse.xy;
-
-    float R = 100.;
-    float h = 40.;
-    float hr = R * sqrt(1. - ((R - h) / R) * ((R - h) / R));
-    float r = sqrt((xy.x * xy.x) + (xy.y * xy.y));
-
-    vec2 new_xy = r < hr ? xy * (R - h) / sqrt(R * R + r * r) : xy;
-
-    gl_FragColor = texture2D(texture, (new_xy.xy + u_mouse.xy) / u_resolution.xy);
-  }
 }
