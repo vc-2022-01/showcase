@@ -11,7 +11,7 @@ let mask;
 
 function preload() {
 	maskShader = readShader("/showcase/sketches/mask.frag", { varyings: Tree.texcoords2,});
-  	img = loadImage("/showcase/tierra.png");
+  	img = loadImage("/showcase/sketches/tierra.jpg");
 }
 
 function setup() {
