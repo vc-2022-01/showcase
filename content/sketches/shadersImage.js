@@ -10,8 +10,9 @@ let mask;
 */
 
 function preload() {
-	maskShader = readShader("/shaders/mask.frag", { varyings: Tree.texcoords2,});
-  	img = loadImage("/showcase/lenna.png");
+    
+	maskShader = readShader("/showcase/shaders/mask.frag", { varyings: Tree.texcoords2,});
+  	img = loadImage("/showcase/sketches/lenna.png");
 }
 
 function setup() {
