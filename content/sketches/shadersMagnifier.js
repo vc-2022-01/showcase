@@ -42,5 +42,7 @@ function draw() {
 	background(0);
     maskShader.setUniform('radio',radio.value());
 	emitMousePosition(maskShader, 'u_mouse');
+    rotate(PI)
 	quad(-width / 2, -height / 2, width / 2, -height / 2, width / 2, height / 2, -width / 2, height / 2);
+    
 }
