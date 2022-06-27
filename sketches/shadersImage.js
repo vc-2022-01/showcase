@@ -70,8 +70,8 @@ function setup() {
 	mask.position(10, 10);
 
 	shader(maskShader);
-    maskShader.setUniform('texture', img);
-    emitTexOffset(maskShader, img, 'texOffset');
+    maskShader.setUniform('texture', img2);
+    emitTexOffset(maskShader, img2, 'texOffset');
 	maskShader.setUniform('mask', [0.0, 0.0, 0.0, 0.0, 1., 0.0, 0.0, 0.0, 0.0]); // Identity
 	emitResolution(maskShader, 'u_resolution');
 }
