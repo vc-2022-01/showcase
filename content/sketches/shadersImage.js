@@ -28,6 +28,7 @@ function setup() {
 	noStroke();
 	textureMode(NORMAL);
     radio = createSlider(100, 400, 50.0);
+    radio.position(200, 10);
     //foco
 	foco = createCheckbox('foco', false);
 	foco.style('color', 'blue');
@@ -39,12 +40,8 @@ function setup() {
 		}
 	});
 	foco.position(100, 10);
-    radio.position(200, 10);
-    //imagenes
-    images = createSelect();
-    images.option('imagen1',0);
-    images.option('imagen2',1);
-    images.option('imagen3',2);
+    
+
     //matrices de convolucion
 	mask = createSelect();
 	mask.option('None', 0);

@@ -7,6 +7,7 @@ let img2;
 let video_src;
 let region;
 let mask;
+let radio;
 /* 
 	References:
 	https://docs.isf.video/primer_chapter_6.html#what-is-a-convolution-matrix 
@@ -28,6 +29,8 @@ function setup() {
 	createCanvas(650, 500, WEBGL);
 	noStroke();
 	textureMode(NORMAL);
+    radio = createSlider(100, 400, 50.0);
+    radio.position(200, 10);
     //matrices de convolucion
 	shader(maskShader);
     maskShader.setUniform('texture', img);
@@ -37,6 +40,7 @@ function setup() {
 
 function draw() {
 	background(0);
+    maskShader.setUniform('radio',radio.value());
 	emitMousePosition(maskShader, 'u_mouse');
 	quad(-width / 2, -height / 2, width / 2, -height / 2, width / 2, height / 2, -width / 2, height / 2);
 }
