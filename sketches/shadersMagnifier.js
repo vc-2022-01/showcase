@@ -19,9 +19,7 @@ function preload() {
 	//focustmaskShader = readShader("/showcase/sketches/focustmask.frag", { varyings: Tree.texcoords2,});
     //normalmaskShader = readShader("/showcase/sketches/normalmask.frag", { varyings: Tree.texcoords2,});
     maskShader = readShader("/showcase/sketches/magnifiermask.frag", { varyings: Tree.texcoords2,});
-    img = loadImage("/showcase/sketches/lenna.png");
-  	img1 = loadImage("/showcase/sketches/lenna.png");
-    img2 = loadImage("/showcase/sketches/mandrill.png");
+    img = loadImage("/showcase/sketches/lennaR.png");
 }
 
 function setup() {
@@ -31,8 +29,6 @@ function setup() {
 	textureMode(NORMAL);
     radio = createSlider(100, 400, 50.0);
     radio.position(100, 10);
-	rotation = createSlider(0.1, 2.0, 0.1);
-    rotation.position(100, 25);
     //matrices de convolucion
 	shader(maskShader);
     maskShader.setUniform('texture', img);
@@ -45,7 +41,6 @@ function draw() {
     maskShader.setUniform('radio',radio.value());
 	emitMousePosition(maskShader, 'u_mouse');
 	push();
-	rotate(2*PI);
 	quad(-width / 2, -height / 2, width / 2, -height / 2, width / 2, height / 2, -width / 2, height / 2);
     pop();
 }
