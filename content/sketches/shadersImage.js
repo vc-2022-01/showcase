@@ -49,12 +49,15 @@ function setup() {
         switch(images.value()){
             case '0':
                 maskShader.setUniform('texture', img1);
+                emitTexOffset(maskShader, img1, 'texOffset');
                 break;
             case '1':
                 maskShader.setUniform('texture', img2);
+                emitTexOffset(maskShader, img2, 'texOffset');
                 break;
             case '2':
                 maskShader.setUniform('texture', img2);
+                emitTexOffset(maskShader, img2, 'texOffset');
                 break;
         }
     //matrices de convolucion
@@ -70,8 +73,6 @@ function setup() {
 	mask.position(10, 10);
 
 	shader(maskShader);
-    maskShader.setUniform('texture', img2);
-    emitTexOffset(maskShader, img2, 'texOffset');
 	maskShader.setUniform('mask', [0.0, 0.0, 0.0, 0.0, 1., 0.0, 0.0, 0.0, 0.0]); // Identity
 	emitResolution(maskShader, 'u_resolution');
 }

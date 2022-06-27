@@ -18,6 +18,7 @@ function preload() {
 	//focustmaskShader = readShader("/showcase/sketches/focustmask.frag", { varyings: Tree.texcoords2,});
     //normalmaskShader = readShader("/showcase/sketches/normalmask.frag", { varyings: Tree.texcoords2,});
     video_src = createVideo(["/showcase/sketches/fingers.webm"]);
+    video_src.hide();
     maskShader = readShader("/showcase/sketches/mask.frag", { varyings: Tree.texcoords2,});
 }
 
