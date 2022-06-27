@@ -16,7 +16,7 @@ varying vec2 texcoords2;
 void main() {
     vec2 xy = gl_FragCoord.xy - u_mouse.xy;
 
-    float R = 100.;
+    float R = 200.;
     float h = 40.;
     float hr = R * sqrt(1. - ((R - h) / R) * ((R - h) / R));
     float r = sqrt(xy.x * xy.x + xy.y * xy.y);

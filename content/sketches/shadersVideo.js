@@ -17,10 +17,8 @@ function preload() {
     
 	//focustmaskShader = readShader("/showcase/sketches/focustmask.frag", { varyings: Tree.texcoords2,});
     //normalmaskShader = readShader("/showcase/sketches/normalmask.frag", { varyings: Tree.texcoords2,});
+    video_src = createVideo(["/showcase/sketches/fingers.webm"]);
     maskShader = readShader("/showcase/sketches/mask.frag", { varyings: Tree.texcoords2,});
-    img = loadImage("/showcase/sketches/lenna.png");
-  	img1 = loadImage("/showcase/sketches/lenna.png");
-    img2 = loadImage("/showcase/sketches/mandrill.png");
 }
 
 function setup() {
@@ -28,7 +26,6 @@ function setup() {
 	createCanvas(650, 500, WEBGL);
 	noStroke();
 	textureMode(NORMAL);
-    
     //foco
 	foco = createCheckbox('foco', false);
 	foco.style('color', 'blue');
@@ -40,23 +37,7 @@ function setup() {
 		}
 	});
 	foco.position(100, 10);
-
-    //imagenes
-    images = createSelect();
-    images.option('imagen1',0);
-    images.option('imagen2',1);
-    images.option('imagen3',2);
-        switch(images.value()){
-            case '0':
-                maskShader.setUniform('texture', img1);
-                break;
-            case '1':
-                maskShader.setUniform('texture', img2);
-                break;
-            case '2':
-                maskShader.setUniform('texture', img2);
-                break;
-        }
+    
     //matrices de convolucion
 	mask = createSelect();
 	mask.option('None', 0);
@@ -70,8 +51,8 @@ function setup() {
 	mask.position(10, 10);
 
 	shader(maskShader);
-    maskShader.setUniform('texture', img);
-    emitTexOffset(maskShader, img, 'texOffset');
+    maskShader.setUniform('texture', video_src);
+    emitTexOffset(maskShader, video_src, 'texOffset');
 	maskShader.setUniform('mask', [0.0, 0.0, 0.0, 0.0, 1., 0.0, 0.0, 0.0, 0.0]); // Identity
 	emitResolution(maskShader, 'u_resolution');
 }
