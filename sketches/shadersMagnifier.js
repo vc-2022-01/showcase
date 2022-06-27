@@ -30,7 +30,9 @@ function setup() {
 	noStroke();
 	textureMode(NORMAL);
     radio = createSlider(100, 400, 50.0);
-    radio.position(200, 10);
+    radio.position(100, 10);
+	rotation = createSlider(0, 2, 0.1);
+    rotation.position(100, 20);
     //matrices de convolucion
 	shader(maskShader);
     maskShader.setUniform('texture', img);
@@ -43,7 +45,7 @@ function draw() {
     maskShader.setUniform('radio',radio.value());
 	emitMousePosition(maskShader, 'u_mouse');
 	push();
-	rotate(PI/4);
+	rotate(PI*rotation);
 	quad(-width / 2, -height / 2, width / 2, -height / 2, width / 2, height / 2, -width / 2, height / 2);
     pop();
 }
