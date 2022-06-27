@@ -1,4 +1,6 @@
 let maskShader;
+let focustmaskShader;
+let normalmaskShader;
 let img;
 let video_src;
 let region;
@@ -11,7 +13,8 @@ let mask;
 
 function preload() {
     
-	maskShader = readShader("/showcase/sketches/mask.frag", { varyings: Tree.texcoords2,});
+	focustmaskShader = readShader("/showcase/sketches/focustmask.frag", { varyings: Tree.texcoords2,});
+    normalmaskShader = readShader("/showcase/sketches/normalmask.frag", { varyings: Tree.texcoords2,});
   	img = loadImage("/showcase/sketches/lenna.png");
 }
 
@@ -25,12 +28,17 @@ function setup() {
 	foco.style('color', 'blue');
 	foco.changed(() => {
 		if (foco.checked()) {
-			maskShader.setUniform('foco', true);
+			maskShader = focustmaskShader
 		} else {
-			maskShader.setUniform('foco', false);
+			maskShader = normalmaskShader;
 		}
 	});
 	foco.position(100, 10);
+    images = createSelect();
+    images.option('imagen1',0);
+    images.option('imagen1',1);
+    images.option('imagen1',2);
+
 	mask = createSelect();
 	mask.option('None', 0);
 	mask.option('Gaussian', 1);
