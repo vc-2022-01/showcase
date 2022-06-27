@@ -23,12 +23,12 @@ function setup() {
 	createCanvas(650, 500, WEBGL);
 	noStroke();
 	textureMode(NORMAL);
-
+    maskShader = focustmaskShader;
 	foco = createCheckbox('foco', false);
 	foco.style('color', 'blue');
 	foco.changed(() => {
 		if (foco.checked()) {
-			maskShader = focustmaskShader
+			maskShader = focustmaskShader;
 		} else {
 			maskShader = normalmaskShader;
 		}
