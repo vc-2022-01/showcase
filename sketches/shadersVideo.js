@@ -26,6 +26,7 @@ function setup() {
 	createCanvas(650, 500, WEBGL);
 	noStroke();
 	textureMode(NORMAL);
+    video_src.loop();
     //foco
 	foco = createCheckbox('foco', false);
 	foco.style('color', 'blue');
