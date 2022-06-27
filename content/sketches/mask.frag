@@ -9,14 +9,14 @@ uniform float mask[9];
 uniform vec2 u_mouse;
 uniform vec2 u_resolution;
 uniform bool foco;
-uniform bool radian;
+uniform double radio;
 // we need our interpolated tex coord
 varying vec2 texcoords2;
 
 void main() {
     vec2 xy = gl_FragCoord.xy - u_mouse.xy;
 
-    float R = 200.;
+    float R = double;
     float h = 40.;
     float hr = R * sqrt(1. - ((R - h) / R) * ((R - h) / R));
     float r = sqrt(xy.x * xy.x + xy.y * xy.y);
