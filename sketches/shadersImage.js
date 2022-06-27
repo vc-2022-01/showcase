@@ -44,10 +44,10 @@ function setup() {
     images.option('imagen3',2);
         switch(images.value()){
             case '0':
-                img = img1;
+                img = loadImage("/showcase/sketches/lenna.png");
                 break;
             case '1':
-                img = img2;
+                img = loadImage("/showcase/sketches/mandrill.png");
                 break;
             case '2':
                 break;
