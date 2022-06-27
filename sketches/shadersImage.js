@@ -2,6 +2,8 @@ let maskShader;
 let focustmaskShader;
 let normalmaskShader;
 let img;
+let img1;
+let img2;
 let video_src;
 let region;
 let mask;
@@ -13,9 +15,11 @@ let mask;
 
 function preload() {
     
-	focustmaskShader = readShader("/showcase/sketches/focustmask.frag", { varyings: Tree.texcoords2,});
-    normalmaskShader = readShader("/showcase/sketches/normalmask.frag", { varyings: Tree.texcoords2,});
-  	img = loadImage("/showcase/sketches/lenna.png");
+	//focustmaskShader = readShader("/showcase/sketches/focustmask.frag", { varyings: Tree.texcoords2,});
+    //normalmaskShader = readShader("/showcase/sketches/normalmask.frag", { varyings: Tree.texcoords2,});
+    maskShader = readShader("/showcase/sketches/mask.frag", { varyings: Tree.texcoords2,});
+  	img1 = loadImage("/showcase/sketches/lenna.png");
+    img2 = loadImage("/showcase/sketches/mandrill.png");
 }
 
 function setup() {
@@ -23,22 +27,31 @@ function setup() {
 	createCanvas(650, 500, WEBGL);
 	noStroke();
 	textureMode(NORMAL);
-    maskShader = focustmaskShader;
+    img = img1;
 	foco = createCheckbox('foco', false);
 	foco.style('color', 'blue');
 	foco.changed(() => {
 		if (foco.checked()) {
-			maskShader = focustmaskShader;
+			maskShader.setUniform('foco',true)
 		} else {
-			maskShader = normalmaskShader;
+			maskShader.setUniform('foco',false)
 		}
 	});
 	foco.position(100, 10);
     images = createSelect();
     images.option('imagen1',0);
-    images.option('imagen1',1);
-    images.option('imagen1',2);
-
+    images.option('imagen2',1);
+    images.option('imagen3',2);
+        switch(images.value()){
+            case '0':
+                img = img1;
+                break;
+            case '1':
+                img = img2;
+                break;
+            case '2':
+                break;
+        }
 	mask = createSelect();
 	mask.option('None', 0);
 	mask.option('Gaussian', 1);
