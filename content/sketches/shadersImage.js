@@ -18,6 +18,7 @@ function preload() {
 	//focustmaskShader = readShader("/showcase/sketches/focustmask.frag", { varyings: Tree.texcoords2,});
     //normalmaskShader = readShader("/showcase/sketches/normalmask.frag", { varyings: Tree.texcoords2,});
     maskShader = readShader("/showcase/sketches/mask.frag", { varyings: Tree.texcoords2,});
+    img = loadImage("/showcase/sketches/lenna.png");
   	img1 = loadImage("/showcase/sketches/lenna.png");
     img2 = loadImage("/showcase/sketches/mandrill.png");
 }
@@ -27,7 +28,6 @@ function setup() {
 	createCanvas(650, 500, WEBGL);
 	noStroke();
 	textureMode(NORMAL);
-    img = img1;
 	foco = createCheckbox('foco', false);
 	foco.style('color', 'blue');
 	foco.changed(() => {
@@ -44,10 +44,10 @@ function setup() {
     images.option('imagen3',2);
         switch(images.value()){
             case '0':
-                img = loadImage("/showcase/sketches/lenna.png");
+                img = img1;
                 break;
             case '1':
-                img = loadImage("/showcase/sketches/mandrill.png");
+                img = img2;
                 break;
             case '2':
                 break;
@@ -62,7 +62,16 @@ function setup() {
 	mask.option('Sharpen', 6);
 	mask.option('Sobel', 7);
 	mask.position(10, 10);
-	mask.changed(() => {
+	shader(maskShader);
+	maskShader.setUniform('texture', img);
+	maskShader.setUniform('mask', [0.0, 0.0, 0.0, 0.0, 1., 0.0, 0.0, 0.0, 0.0]); // Identity
+	emitTexOffset(maskShader, img, 'texOffset');
+	emitResolution(maskShader, 'u_resolution');
+}
+
+function draw() {
+	background(0);
+    mask.changed(() => {
 		switch (mask.value()) {
 			case '0':
 				maskShader.setUniform('mask', [0.0, 0.0, 0.0, 0.0, 1., 0.0, 0.0, 0.0, 0.0]); // Identity
@@ -93,15 +102,6 @@ function setup() {
 				break;
 		}
 	});
-	shader(maskShader);
-	maskShader.setUniform('texture', img);
-	maskShader.setUniform('mask', [0.0, 0.0, 0.0, 0.0, 1., 0.0, 0.0, 0.0, 0.0]); // Identity
-	emitTexOffset(maskShader, img, 'texOffset');
-	emitResolution(maskShader, 'u_resolution');
-}
-
-function draw() {
-	background(0);
 	emitMousePosition(maskShader, 'u_mouse');
 	quad(-width / 2, -height / 2, width / 2, -height / 2, width / 2, height / 2, -width / 2, height / 2);
 }
