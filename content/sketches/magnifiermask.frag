@@ -14,13 +14,16 @@ uniform float radio;
 
 // we need our interpolated tex coord
 varying vec2 texcoords2;
+float depth= radio/2.;
 
-void main() {
-    vec2 xy = gl_FragCoord.xy - u_mouse.xy;
-    float R = radio;
-    float h = 40.;
-    float hr = R * sqrt(1. - ((R - h) / R) * ((R - h) / R));
-    float r = sqrt((xy.x * xy.x) + (xy.y * xy.y));
-    vec2 new_xy = r < hr ? xy * (R - h) / sqrt(R * R + r * r) : xy;
-    gl_FragColor = texture2D(texture,- (new_xy.xy + u_mouse.xy) / u_resolution.xy);
+// === main loop ===
+void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
+	vec2 uv = gl_FragColor.xy/u_resolution.xy;
+	vec2 center = u_mouse.xy/u_resolution.xy;
+	float ax = ((uv.x - center.x) * (uv.x - center.x)) / (0.2*0.2) + ((uv.y - center.y) * (uv.y - center.y)) / (0.2/ (  u_resolution.x / u_resolution.y )) ;
+	float dx = 0.0 + (-depth/radio)*ax + (depth/(radio*radio))*ax*ax;
+    float f =  (ax + dx );
+	if (ax > radio) f = ax;
+    vec2 magnifierArea = center + (uv-center)*f/ax;
+    gl_FragColor = vec4(texture( texcoords2, vec2(1,-1) * magnifierArea ).rgb, 1.);  
 }
