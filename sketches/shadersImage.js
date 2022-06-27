@@ -7,6 +7,7 @@ let img2;
 let video_src;
 let region;
 let mask;
+let radio;
 /* 
 	References:
 	https://docs.isf.video/primer_chapter_6.html#what-is-a-convolution-matrix 
@@ -28,7 +29,7 @@ function setup() {
 	createCanvas(650, 500, WEBGL);
 	noStroke();
 	textureMode(NORMAL);
-    
+    radio = createSlider(100, 400, 50.0);
     //foco
 	foco = createCheckbox('foco', false);
 	foco.style('color', 'blue');
@@ -40,7 +41,7 @@ function setup() {
 		}
 	});
 	foco.position(100, 10);
-
+    radio.position(200, 10);
     //imagenes
     images = createSelect();
     images.option('imagen1',0);
@@ -49,15 +50,12 @@ function setup() {
         switch(images.value()){
             case '0':
                 maskShader.setUniform('texture', img1);
-                emitTexOffset(maskShader, img1, 'texOffset');
                 break;
             case '1':
                 maskShader.setUniform('texture', img2);
-                emitTexOffset(maskShader, img2, 'texOffset');
                 break;
             case '2':
                 maskShader.setUniform('texture', img2);
-                emitTexOffset(maskShader, img2, 'texOffset');
                 break;
         }
     //matrices de convolucion
@@ -73,6 +71,7 @@ function setup() {
 	mask.position(10, 10);
 
 	shader(maskShader);
+    emitTexOffset(maskShader, img, 'texOffset');
 	maskShader.setUniform('mask', [0.0, 0.0, 0.0, 0.0, 1., 0.0, 0.0, 0.0, 0.0]); // Identity
 	emitResolution(maskShader, 'u_resolution');
 }
@@ -110,6 +109,7 @@ function draw() {
 				break;
 		}
 	});
+    maskShader.setUniform('radio',radio.value());
 	emitMousePosition(maskShader, 'u_mouse');
 	quad(-width / 2, -height / 2, width / 2, -height / 2, width / 2, height / 2, -width / 2, height / 2);
 }
