@@ -16,7 +16,7 @@ uniform float radio;
 varying vec2 texcoords2;
 
 void main() {
-    vec2 xy = -gl_FragCoord.xy - u_mouse.xy;
+    vec2 xy = gl_FragCoord.xy - u_mouse.xy;
     float R = radio;
     float h = 40.;
     float hr = R * sqrt(1. - ((R - h) / R) * ((R - h) / R));
