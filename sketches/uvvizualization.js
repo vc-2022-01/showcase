@@ -2,7 +2,7 @@ let uvShader;
 
 function preload() {
 
-  uvShader = readShader('/shaders/uv.frag', { matrices: Tree.NONE, varyings: Tree.texcoords2 });
+  uvShader = readShader('/sketches/shaders/uv.frag', { matrices: Tree.NONE, varyings: Tree.texcoords2 });
 }
 //C:\Users\Home\Desktop\showcase\showcase\content\sketches\shaders\uv.frag
 function setup() {
