@@ -3,7 +3,7 @@
 El image Processing es el uso de computadores para procesar imagenes digitales mediante algun algoritmo, en este se permiten un aplio rango de algoritmos para ser aplicados sobre la entrada, ademas puede evitar problemas como el ruido y las distorciones.
 
 En este caso se usan matrices de convolucion o mascaras, se les tiende a llamar matrices de convolucion por el proceso que tienen para empezar se crea una matriz de n*m
-{{< katex display >}} \begin{equation} \begin{vmatrix} 0 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 0 \end{vmatrix}\end{equation}{{< /katex >}} 
+{{< katex display >}}  \begin{vmatrix} 0 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 0 \end{vmatrix}\ {{< /katex >}} 
 en este caso de 3x3 esta matriz recorrera la matriz original de la imagen y genera una nueva imagen, en este caso al ser la matriz identidad la imagen generada es la misma, estas imagenes tienden a destacar atributos de la imagen por ejemplo 
 {{< katex display >}} \begin{equation} \begin{vmatrix} -1 & -1 & -1\\ -1 & 8 & -1\\-1 & -1 & -1 \end{vmatrix}\end{equation}{{< /katex >}} 
 esta matris se usa para identificar los cambios de relieve de una 
