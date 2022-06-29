@@ -50,10 +50,6 @@ void main() {
     outputValue = vec4(hsv.rgb, 1.0);
   } else if(selectedTool == 2) {
     vec3 hsv = rgb2hsv(texel.rgb);
-    outputValue = vec4(hsv.rgb, 1.0);
-  } else if(selectedTool == 3) {
-    vec3 hsv = rgb2hsv(texel.rgb);
-
     vec3 hsl = hsv2hsl(hsv);
     outputValue = vec4(hsl.rgb, 1.0);
   }
