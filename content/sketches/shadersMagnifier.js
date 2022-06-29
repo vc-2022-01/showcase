@@ -18,6 +18,8 @@ function preload() {
     
 	//focustmaskShader = readShader("/showcase/sketches/focustmask.frag", { varyings: Tree.texcoords2,});
     //normalmaskShader = readShader("/showcase/sketches/normalmask.frag", { varyings: Tree.texcoords2,});
+	video_src = createVideo(["/showcase/sketches/fingers.webm"]);
+    video_src.hide();
     maskShader = readShader("/showcase/sketches/magnifiermask.frag", { varyings: Tree.texcoords2,});
     img = loadImage("/showcase/sketches/lennaR.png");
 }
@@ -27,6 +29,18 @@ function setup() {
 	createCanvas(650, 500, WEBGL);
 	noStroke();
 	textureMode(NORMAL);
+	video_on = createCheckbox('video', false);
+	video_on.style('color', 'white');
+	video_on.changed(() => {
+		if (video_on.checked()) {
+		maskShader.setUniform('texture', video_src);
+		video_src.loop();
+		} else {
+		maskShader.setUniform('texture', img);
+		video_src.pause();
+		}
+	});
+	video_on.position(10, 30);
     radio = createSlider(100, 400, 50.0);
     radio.position(100, 10);
     //matrices de convolucion

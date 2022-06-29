@@ -46,13 +46,13 @@ function setup() {
     //matrices de convolucion
 	mask = createSelect();
 	mask.option('None', 0);
-	mask.option('Gaussian', 1);
+	mask.option('Ridge', 1);
 	mask.option('Box Blur', 2);
-	mask.option('Laplacian', 3);
-	mask.option('Edge', 4);
-	mask.option('Emboss', 5);
+	mask.option('Gaussian Blur', 3);
+	mask.option('Enfoque', 4); 
+	mask.option('Repujado', 5);
 	mask.option('Sharpen', 6);
-	mask.option('Sobel', 7);
+	mask.option('Realzar bordes', 7);
 	mask.position(10, 10);
 
 	shader(maskShader);
@@ -64,31 +64,31 @@ function setup() {
 
 function draw() {
 	background(0);
-    mask.changed(() => {
+	mask.changed(() => {
 		switch (mask.value()) {
 			case '0':
 				maskShader.setUniform('mask', [0.0, 0.0, 0.0, 0.0, 1., 0.0, 0.0, 0.0, 0.0]); // Identity
 				break;
 			case '1':
-				maskShader.setUniform('mask', [0.0625, 0.125, 0.0625, 0.125, 0.25, 0.125, 0.0625, 0.125, 0.0625]); // Gaussian blur
+				maskShader.setUniform('mask', [-1.0, -1.0, -1.0, -1.0, 8.0, -1.0, -1.0, -1.0, -1.0]); // Ridge
 				break;
 			case '2':
-				maskShader.setUniform('mask', [0.1111, 0.1111, 0.1111, 0.1111, 0.1111, 0.1111, 0.1111, 0.1111, 0.1111]); // Box blur
+				maskShader.setUniform('mask', [0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]); // Box blur
 				break;
 			case '3':
-				maskShader.setUniform('mask', [1.0, 0.0, 1.0, 0.0, -4.0, 0.0, 1.0, 0.0, 1.0]); // Laplacian 
+				maskShader.setUniform('mask', [0.0625, 0.125, 0.0625, 0.125, 0.25, 0.125, 0.0625, 0.125, 0.0625]); // Gaussian blur
 				break;
 			case '4':
-				maskShader.setUniform('mask', [-1.0, -1.0, -1.0, -1.0, 8.0, -1.0, -1.0, -1.0, -1.0]); // Edge detect 
+				maskShader.setUniform('mask', [1.0, 0.0, 1.0, 0.0, -4.0, 0.0, 1.0, 0.0, 1.0]); // Enfoque 
 				break;
 			case '5':
-				maskShader.setUniform('mask', [-2.0, -1.0, 0.0, -1.0, 1.0, 1.0, 0.0, 1.0, 2.0]); // Emboss
+				maskShader.setUniform('mask', [-2.0, -1.0, 0.0, -1.0, 1.0, 1.0, 0.0, 1.0, 2.0]); // Repujado
 				break;
 			case '6':
 				maskShader.setUniform('mask', [-1.0, 0.0, -1.0, 0.0, 5.0, 0.0, -1.0, 0.0, -1.0]); // Sharpen
 				break;
 			case '7':
-				maskShader.setUniform('mask', [1.0, 0.0, -1.0, 2.0, 0.0, -2.0, 1.0, 0.0, -1.0]); // Sobel
+				maskShader.setUniform('mask', [0.0, 0.0, 0.0, -1.0, 1.0, 0.0, 0.0, 0.0, -0.0]); // Realzar bordes
 				break;
 			default:
 				console.log(mask.value());
