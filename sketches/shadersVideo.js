@@ -41,7 +41,7 @@ function setup() {
 			maskShader.setUniform('foco',false)
 		}
 	});
-	foco.position(100, 10);
+	foco.position(150, 10);
     
     //matrices de convolucion
 	mask = createSelect();
