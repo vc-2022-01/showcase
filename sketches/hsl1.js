@@ -23,9 +23,12 @@ function setup() {
   colorTexture = createSelect();
   colorTexture.position(10, 10);
   colorTexture.option("Original", 0);
-  colorTexture.option("red", 1);
-  colorTexture.option("green", 2);
-  colorTexture.option("blue", 3);
+  colorTexture.option("0° [1,0,0]", 1);
+  colorTexture.option("60° [1,1,0]", 2);
+  colorTexture.option("120° [0,1,0]", 3);
+  colorTexture.option("180° [0,1,1]", 4);
+  colorTexture.option("240° [0,0,1]", 5);
+  colorTexture.option("300° [1,0,1]", 6);
   colorTexture.changed(() => {
     Shader.setUniform("colorTexture", colorTexture.value());
   });
