@@ -40,7 +40,7 @@ function setup() {
 		video_src.pause();
 		}
 	});
-	video_on.position(10, 30);
+	video_on.position(10, 10);
     radio = createSlider(100, 400, 50.0);
     radio.position(100, 10);
     //matrices de convolucion
