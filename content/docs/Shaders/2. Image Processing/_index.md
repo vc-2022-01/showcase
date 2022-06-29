@@ -1,5 +1,3 @@
 ---
 bookCollapseSection: true
 ---
-
-# Image procesing
