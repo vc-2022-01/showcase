@@ -7,14 +7,10 @@ let imageSelect;
 let mousePos;
 
 function preload() {
-  Shader = readShader("/showcase/sketches/entrega3/cbt/color_tools/hsv.frag", { varyings: Tree.texcoords2 }
+  Shader = readShader("/showcase/sketches/hsl.frag", { varyings: Tree.texcoords2 }
   );
-  fiesta = loadImage(
-    "/showcase/sketches/pexels-md-noor-hossain-8443591.jpg"
-  );
-  tortuga = loadImage(
-    "/showcase/sketches/pexels-belle-co-847393.jpg"
-  );
+  fiesta = loadImage("/showcase/sketches/pexels-md-noor-hossain-8443591.jpg");
+  tortuga = loadImage("/showcase/sketches/pexels-belle-co-847393.jpg");
 }
 
 
@@ -65,10 +61,5 @@ function setup() {
 function draw() {
   Shader.setUniform("mousePos", [map(mouseX, 0, width, 0.0, 1.0), map(mouseY, 0, width, 0.0, 1.0)]);
   background(0);
-  quad(-width / 2, -height / 2,
-    width / 2, -height / 2,
-    width / 2,
-    height / 2, -width / 2,
-    height / 2
-  );
+  quad(-width / 2, -height / 2, width / 2, -height / 2, width / 2, height / 2, -width / 2, height / 2 );
 }
