@@ -29,7 +29,8 @@ function setup() {
     hsvSelect.changed(() => {
       Shader.setUniform("selectedTool", hsvSelect.value());
     });
-    Shader.setUniform("selectedTool", hsvSelect.value());
+    Shader.setUniform("texture", tortuga);
+
 
   }
   
