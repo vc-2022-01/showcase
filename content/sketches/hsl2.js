@@ -23,8 +23,8 @@ function setup() {
     hsvSelect = createSelect();
     hsvSelect.position(10, 10);
     hsvSelect.option("Original", 0);
-    hsvSelect.option("HGV", 1);
-    hsvSelect.option("HSL", 2);
+    hsvSelect.option("a HGV", 1);
+    hsvSelect.option("a HSL", 2);
     hsvSelect.selected("none");
     hsvSelect.changed(() => {
       Shader.setUniform("selectedTool", hsvSelect.value());
