@@ -1,1 +1,5 @@
+---
+bookCollapseSection: true
+---
+
 # Image procesing

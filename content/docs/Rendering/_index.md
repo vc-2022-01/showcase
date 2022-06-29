@@ -1,3 +1,7 @@
+---
+bookCollapseSection: true
+---
+
 # Introduction
 One of the problems facing computer graphics is how to represent a 3D shape or model on a 2D monitor or screen. This is relevant, because the monitors on which the images are displayed are not continuous spaces like the real world, they are, instead, represented by a grid of pixels, which are a discrete units that can only take one color value. 
 

@@ -1,1 +1,4 @@
+---
+bookCollapseSection: true
+---
 # Texturing
