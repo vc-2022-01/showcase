@@ -61,11 +61,11 @@ void main() {
   if(colorTexture == 0) {
     outputValue.rgb = outputValue.rgb * 1.0;
   } else if(colorTexture == 1) {
-    outputValue.rgb = outputValue.rgb * vec4(1.0, 0.0, 0.0,1.0);
+    outputValue.rgb = outputValue.rgb * vec3(1.0, 0.0, 0.0);
   } else if(colorTexture == 2) {
-    outputValue.rgb = outputValue.rgb * vec4(0.0, 1.0, 0.0,1.0);
+    outputValue.rgb = outputValue.rgb * vec3(0.0, 1.0, 0.0);
   } else if(colorTexture == 3) {
-    outputValue.rgb = outputValue.rgb * vec4(0.0, 0.0, 1.0,1.0);
+    outputValue.rgb = outputValue.rgb * vec3(0.0, 0.0, 1.0);
   }
 
   gl_FragColor = outputValue;
