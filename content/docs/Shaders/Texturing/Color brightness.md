@@ -6,7 +6,7 @@ El modelo de color *HSV* ( Hue, Saturation, Value. Por sus siglas en inglés) ta
 
 Es una transformación no lineal de color RGB y se usa para progreciones de color, este no es el mismo HSL, el modelo HSL se explicará más adelante.
 
-![1](https://es.wikipedia.org/wiki/Modelo_de_color_HSV#/media/Archivo:Cono_de_la_coloraci%C3%B3n_HSV.png)
+![1](https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Cono_de_la_coloraci%C3%B3n_HSV.png/1280px-Cono_de_la_coloraci%C3%B3n_HSV.png)
 
 En la imagen podemos ver el cono del modelo HSV, podemos movernos a través del mismo con un vector de 3 dimensiones de forma:
 
@@ -27,7 +27,7 @@ Foto de Md. Noor Hossain: https://www.pexels.com/es-es/foto/vacaciones-gente-mul
 
 *HSL* (Hue, Saturation, Lightness. Por sus siglas en inglés), también llamado *HSI* (Hue, Saturation, Intensity. Por sus siglas en inglés), tiene dos vertices que representan el blanco y el negro, el ángulo se corresponde con el _Hue_, la distancia con la _Saturation_ y la distancia al eje blanco-negro con el _Lightness_
 
-![2](https://es.wikipedia.org/wiki/Modelo_de_color_HSL#/media/Archivo:Doble_cono_de_la_coloraci%C3%B3n_HSL.png)
+![2](https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Doble_cono_de_la_coloraci%C3%B3n_HSL.png/1280px-Doble_cono_de_la_coloraci%C3%B3n_HSL.png)
 
 transformaciones a *HSV* y *HSL*
 
